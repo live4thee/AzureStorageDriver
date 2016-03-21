@@ -39,6 +39,11 @@
         <TextBox TabIndex="3" Text="{Binding AccountKey}" />
 
         <CheckBox Margin="0 10"
+               Content="_Use Microsoft Azure China"
+               IsChecked="{Binding UseChinaAzure}"
+               TabIndex="8" />
+
+        <CheckBox Margin="0 10"
                   Content="_Remember this connection"
                   IsChecked="{Binding Persist}"
                   TabIndex="5" />

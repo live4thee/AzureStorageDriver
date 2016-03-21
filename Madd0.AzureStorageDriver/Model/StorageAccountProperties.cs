@@ -19,6 +19,7 @@ namespace Madd0.AzureStorageDriver
     /// </summary>
     public class StorageAccountProperties
     {
+        private static readonly string ChinaEndpointSuffix = "core.chinacloudapi.cn";
         private readonly IConnectionInfo _connectionInfo;
         private readonly XElement _driverData;
 
@@ -79,6 +80,25 @@ namespace Madd0.AzureStorageDriver
                 {
                     this.ClearAccountNameAndKey();
                 }
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets a value indicating whether to use China or global Azure.
+        /// </summary>
+        /// <value>
+        ///   <c>true</c> if China Azure is used; otherwise, <c>false</c>.
+        /// </value>
+        public bool UseChinaAzure
+        {
+            get
+            {
+                return (bool?)this._driverData.Element("UseChinaAzure") ?? false;
+            }
+
+            set
+            {
+                this._driverData.SetElementValue("UseChinaAzure", value);
             }
         }
 
@@ -148,6 +168,11 @@ namespace Madd0.AzureStorageDriver
             }
             else
             {
+                if (this.UseChinaAzure)
+                {
+                    return new CloudStorageAccount(new StorageCredentials(this.AccountName, this.AccountKey), ChinaEndpointSuffix, this.UseHttps);
+                }
+
                 return new CloudStorageAccount(new StorageCredentials(this.AccountName, this.AccountKey), this.UseHttps);
             }
         }

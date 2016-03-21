@@ -18,6 +18,9 @@ Issues and feature requests can be made in the projects
 
 ## Versions ##
 
+### current ###
+* Added support to connect to Microsoft China Azure (aka. Mooncake). [download](https://onedrive.live.com/redir?resid=B409579104AC117F!1300&authkey=!ABEmf3WuUOfKg-s&ithint=file%2clpx)
+
 ### v1.1.0 - 2014-08-20 ###
 
 * Uses latest version of [Azure Storage Client Library](https://github.com/Azure/azure-storage-net/) (4.2.0)
